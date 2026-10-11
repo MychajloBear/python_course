@@ -1,0 +1,5 @@
+# Python / Jupyter кеш
+__pycache__/
+.ipynb_checkpoints/
+.vscode/
+Thumbs.db
