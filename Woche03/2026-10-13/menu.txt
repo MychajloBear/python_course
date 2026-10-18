@@ -1,0 +1,10 @@
+Pizza Margherita;8.50
+Pizza Salami;9.50
+Spaghetti Bolognese;11.50
+Lasagne;12.00
+Caesar Salad;8.00
+Cheeseburger;10.50
+Pommes Frites;4.00
+Cola;3.00
+Wasser;2.50
+Tiramisu;5.50

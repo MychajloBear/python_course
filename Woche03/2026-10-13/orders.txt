@@ -1,0 +1,3 @@
+Bestellung: Cola - 3.0 €
+Bestellung: wasser - 2.5 €
+Bestellung: cola - 3.0 €
