@@ -1,0 +1,15 @@
+2026-11-01 22:02:52,967 - INFO - Programm gestartet
+2026-11-01 22:03:07,683 - WARNING - Ung\xfcltige E-Mail: vedmidmetal@ukr - Die E-Mail-Adresse muss einen Punkt (.) enthalten.
+2026-11-01 22:03:12,433 - INFO - G\xfcltige E-Mail: vedmidmetal@ukr.n
+2026-11-01 22:03:16,938 - INFO - G\xfcltiges Alter: 30
+2026-11-01 22:03:24,024 - WARNING - Ung\xfcltiges Passwort - Das Passwort muss mindestens einen Gro\xdfbuchstaben enthalten.
+2026-11-01 22:03:28,274 - WARNING - Ung\xfcltiges Passwort - Das Passwort muss mindestens 6 Zeichen lang sein.
+2026-11-01 22:03:33,221 - INFO - G\xfcltiges Passwort eingegeben.
+2026-11-01 22:03:33,222 - INFO - Programm erfolgreich beendet
+2026-11-01 22:06:53,641 - INFO - Program is started
+2026-11-01 22:07:06,678 - WARNING - Invalid email entered: dsdfsd - Die E-Mail-Adresse muss ein @ enthalten.
+2026-11-01 22:07:10,203 - WARNING - Invalid email entered: sdsdcsdcsd - Die E-Mail-Adresse muss ein @ enthalten.
+2026-11-01 22:07:11,835 - WARNING - Invalid email entered: sdcsdc.sdcsd - Die E-Mail-Adresse muss ein @ enthalten.
+2026-11-01 22:07:16,039 - INFO - Valid email entered: sdcsdcsd@sdcsd.sdc
+2026-11-01 22:07:18,522 - INFO - Valid age entered: 23
+2026-11-01 22:07:20,879 - INFO - Successful completion.
