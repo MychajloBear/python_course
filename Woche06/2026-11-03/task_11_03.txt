@@ -1,0 +1,73 @@
+Suche
+logo
+
+Allgemein
+Inhalte
+Hubs
+System
+Leseansicht: gesamter Kurs als Text auf einer Seite (Markdown)
+Leseansicht: gesamter Kurs als Text auf einer Seite (JSON)
+M2: EDA, Statistik und Git
+W06: APIs mit Python und EDA Preprocessing
+Gemeinsames Lernen: Der automatisierte Preis-Tracker (Web Scraping)
+
+
+Python: Scraping
+W06: APIs mit Python und  EDA Preprocessing
+0%
+Gemeinsames Lernen: Der automatisierte Preis-Tracker (Web Scraping)
+1/2
+
+Gemeinsames Lernen: Der automatisierte Preis-Tracker (Web Scraping)
+﻿
+In diesem Projekt verlässt du die bequeme Welt der APIs. Es gibt keinen Kellner mehr, der dir die Daten hübsch verpackt serviert. Du schreibst stattdessen einen Bot, der wie ein echter Mensch einen Online-Shop besucht, den aktuellen Preis eines Produktes abliest und diesen in einem Kassenbuch (einer JSON-Datei) notiert.
+
+Dieses Skript ist die Grundlage für echte Automatisierung: Wenn du es später täglich auf deinem Rechner laufen lässt, baut es dir automatisch eine Preis-Historie auf!
+
+﻿
+
+Wir nutzen als Übungs-Ziel die Webseite books.toscrape.com (ein fiktiver Online-Buchladen, der extra für Scraping-Übungen gebaut wurde). Wir wollen den Preis des Buches "A Light in the Attic" überwachen.
+
+In der Konsole soll dein Programm so aussehen:
+
+Starte Browser...
+Besuche Webseite...
+Titel gefunden: A Light in the Attic
+Preis gefunden: £ 51.77
+Der Preis wurde im System protokolliert! 
+Text
+
+﻿
+Die generierte preis_historie.json auf deiner Festplatte soll mit jedem Aufruf des Skripts um einen neuen Eintrag wachsen:
+
+[
+  {
+    "datum":"2026-07-21 15:20:00",
+    "preis":51.77
+  }, 
+  {
+    "datum":"2026-07-22 10:15:00",
+    "preis":51.77
+  }
+]
+Json
+
+﻿
+﻿
+
+Schritt-für-Schritt Anleitung
+Öffne deinen normalen Browser und gehe auf die Unterseite des Buches. Schau dir den HTML-Code an. Wie lautet die Klasse, wo der Preis steht?
+Nutze Playwright, um einen Browser zu starten und lass den Bot die URL des Buches aufrufen.
+Lies den Text des Preises durch seine HTML-Klasse aus.
+Formatiere den Text "£51.77" so um, dass wir es als float casten können.
+Importiere das datetime Modul, um die exakte aktuelle Uhrzeit als schönen Text zu speichern.
+Nun soll der neue Eintrag am Ende einer lokalen JSON-Datei angehängt werden.
+﻿
+Woche 6 - Projekt Webscraping
+Zusätzliche Anmerkung
+Schreibe eine optionale Erläuterung zu deinem Upload
+
+
+lesson-image
+Nächste Lektion
+Material Wissensvermittlung

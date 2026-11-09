@@ -1,0 +1,376 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "4e2dff0b",
+   "metadata": {},
+   "source": [
+    "# 🌿 Übung: Datenbereinigung bei \"GrüneWelt\"\n",
+    "\n",
+    "## Die Ausgangslage\n",
+    "\n",
+    "Ihr seid als Junior Data Analyst:in bei **\"GrüneWelt\"** eingestiegen, einem Online- und Filialhändler für Pflanzen und Gartenzubehör. Der Vertriebsleiter kommt kurz vor dem Monatsmeeting auf euch zu:\n",
+    "\n",
+    "> *\"Wir brauchen dringend ein paar Zahlen für das Meeting morgen: In welcher Region läuft das Geschäft am besten? Welche Produkte verkaufen sich gut? Und wie zufrieden sind unsere Kund:innen eigentlich? Ich habe euch den Rohexport aus unserem Bestellsystem rübergeschickt – `pflanzenhandel_bestellungen_rohdaten.csv`.\"*\n",
+    "\n",
+    "Ihr werft einen ersten Blick in die Datei und merkt schnell: **die Daten sind alles andere als sauber.** Bevor ihr überhaupt eine seriöse Analyse abgeben könnt, müsst ihr die Daten aufbereiten – genau wie ihr es heute Vormittag in der Vorlesung gelernt habt.\n",
+    "\n",
+    "## Ablauf dieser Übung\n",
+    "\n",
+    "Ihr durchlauft dieselben Schritte wie in der Vorlesung, diesmal aber auf dem Pflanzenhandel-Datensatz:\n",
+    "\n",
+    "1. Datentypen prüfen und korrigieren\n",
+    "2. Kategorische Werte vereinheitlichen\n",
+    "3. Duplikate identifizieren und entfernen\n",
+    "4. Fehlende Werte analysieren und behandeln\n",
+    "5. Ausreißer / Plausibilität prüfen\n",
+    "6. Dokumentation der Bereinigung\n",
+    "7. **Bonus:** Die eigentliche Frage des Vertriebsleiters beantworten\n",
+    "\n",
+    "Bearbeitet die Aufgaben-Zellen selbstständig. Kommt ihr nicht weiter, klappt die **Lösung** darunter auf – aber versucht es erst ehrlich selbst!"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2d7d04b6",
+   "metadata": {},
+   "source": [
+    "## Setup — Aufgabe 0\n",
+    "\n",
+    "**Aufgabe:** Importiert `pandas` (als `pd`) und `numpy` (als `np`), ladet den Datensatz `pflanzenhandel_bestellungen_rohdaten.csv` in ein DataFrame `df` und verschafft euch mit zwei euch bekannten Methoden einen ersten Überblick (Anzahl Zeilen/Spalten, Datentypen, erste Zeilen)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "e26068cc",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# Bibliotheken importieren\n",
+    "\n",
+    "\n",
+    "# Datensatz laden\n",
+    "\n",
+    "\n",
+    "# Erster Überblick (z.B. head, info)\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "7db7f650",
+   "metadata": {},
+   "source": [
+    "# 1. Datentypen prüfen und korrigieren\n",
+    "\n",
+    "Schaut euch `df.dtypes` bzw. `df.info()` genauer an. Zwei Spalten fallen auf:\n",
+    "\n",
+    "* **`Menge`** — sollte eigentlich eine Zahl sein, wird aber als Text (`object`) eingelesen.\n",
+    "* **`Datum`** — sollte ein Datum sein, ist aber ebenfalls nur Text.\n",
+    "\n",
+    "**Aufgabe 1.1:** Schaut euch mit `pd.unique()` die Spalte `Menge` an. Welche \"komischen\" Werte entdeckt ihr?\n",
+    "\n",
+    "**Aufgabe 1.2:** Wandelt `Menge` mit `pd.to_numeric()` in einen numerischen Typ um. Nutzt `errors=\"coerce\"`, damit nicht-numerische Werte zu `NaN` werden.\n",
+    "\n",
+    "**Aufgabe 1.3:** Wandelt `Datum` mit `pd.to_datetime()` in einen echten Datumstyp um (Format `\"%Y-%m-%d\"`, ebenfalls mit `errors=\"coerce\"`).\n",
+    "\n",
+    "*Hinweis:* Dass dabei ein paar Werte zu `NaN`/`NaT` werden, ist normal und gewollt — um fehlende Werte kümmern wir uns gezielt in Kapitel 3."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "2a671580",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 1.1 Unique-Werte von 'Menge' ansehen\n",
+    "\n",
+    "\n",
+    "# 1.2 'Menge' in numerisch umwandeln\n",
+    "\n",
+    "\n",
+    "# 1.3 'Datum' in datetime umwandeln\n",
+    "\n",
+    "\n",
+    "# Kontrolle: df.dtypes\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "db5d68ba",
+   "metadata": {},
+   "source": [
+    "# 2. Kategorische Werte vereinheitlichen\n",
+    "\n",
+    "Der Vertriebsleiter will die Zahlen unter anderem **nach Region** aufschlüsseln. Werft dafür einen Blick auf die eindeutigen Werte in `Region` und `Versandart`.\n",
+    "\n",
+    "**Aufgabe 2.1:** Gebt euch mit `pd.unique()` alle Ausprägungen von `Region` und `Versandart` aus. Was fällt euch auf?\n",
+    "\n",
+    "**Aufgabe 2.2:** Vereinheitlicht beide Spalten so, dass z.B. `\"SÜD\"`, `\"Süd\"` und `\"süd\"` alle zu **einem** einheitlichen Wert werden (analog für `Versandart`). Nutzt dafür String-Methoden wie `.str.strip()` und `.str.title()` bzw. `.str.upper()` — genau wie in der Vorlesung bei der Spalte `Location`.\n",
+    "\n",
+    "*Tipp:* Achtet darauf, dass durch fehlende Werte (`NaN`) in `Region` die String-Methoden nicht crashen — pandas überspringt `NaN` bei `.str`-Methoden automatisch, das ist also kein Problem."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "0e234700",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 2.1 Unique-Werte ansehen\n",
+    "\n",
+    "\n",
+    "# 2.2 Vereinheitlichen von 'Region' und 'Versandart'\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "c2e3a140",
+   "metadata": {},
+   "source": [
+    "# 3. Duplikate identifizieren und entfernen\n",
+    "\n",
+    "Beim Export aus dem Bestellsystem kann es passieren, dass einzelne Bestellungen versehentlich doppelt exportiert wurden.\n",
+    "\n",
+    "**Aufgabe 3.1:** Prüft mit `df.duplicated()`, wie viele exakten Duplikate im Datensatz stecken.\n",
+    "\n",
+    "**Aufgabe 3.2:** Entfernt die Duplikate und setzt anschließend den Index zurück (ohne die alte Spalte als neue Spalte zu behalten!)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "06450b84",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 3.1 Anzahl Duplikate prüfen\n",
+    "\n",
+    "\n",
+    "# 3.2 Duplikate entfernen + Index zurücksetzen\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "e5df5a95",
+   "metadata": {},
+   "source": [
+    "# 4. Fehlende Werte analysieren und behandeln\n",
+    "\n",
+    "Jetzt geht es an die fehlenden Werte. Wie in der Vorlesung gilt: **erst verstehen, dann behandeln.**\n",
+    "\n",
+    "**Aufgabe 4.1:** Ermittelt mit `df.isna().sum()` die Anzahl fehlender Werte pro Spalte. Berechnet zusätzlich den **prozentualen** Anteil je Spalte (Anzahl fehlend / Gesamtanzahl Zeilen)."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "389b7039",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 4.1 Fehlende Werte pro Spalte (absolut & in %)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "d6edeebc",
+   "metadata": {},
+   "source": [
+    "## Analyse & Strategie je Spalte\n",
+    "\n",
+    "Wahrscheinlich seht ihr fehlende Werte in vier Spalten: `Kunde`, `Region`, `Einzelpreis` und `Bewertung`. Bevor ihr blind `fillna()` aufruft, überlegt euch für **jede** Spalte, ob und wie ihr sie behandelt — genau wie beim `Bonus`/`Salary`/`Gender`-Beispiel in der Vorlesung.\n",
+    "\n",
+    "**Aufgabe 4.2 (Diskussion, in eigenen Worten in der Markdown-Zelle darunter beantworten):**\n",
+    "\n",
+    "* `Bewertung` fehlt bei recht vielen Bestellungen (~28 %). Überlegt: Ist es hier sinnvoll, den fehlenden Wert durch den Mittelwert/Median zu ersetzen? Oder bedeutet ein fehlender Wert hier eher \"Kund:in hat einfach keine Bewertung abgegeben\"? Was würde eine Imputation mit dem Mittelwert mit eurer späteren Auswertung der Kundenzufriedenheit machen?\n",
+    "* `Region` fehlt bei wenigen Bestellungen, wird aber für die Analyse \"Umsatz nach Region\" gebraucht. Löschen oder mit einer Kategorie wie `\"Unbekannt\"` auffüllen?\n",
+    "* `Einzelpreis` fehlt nur bei ein paar Zeilen. Sollte man hier eher den **Median über den gesamten Datensatz** nehmen, oder gibt es einen Trick, der genauer wäre (Tipp: Preise unterscheiden sich stark je `Produkt` — was, wenn ihr den Median *pro Produkt* nutzt)?\n",
+    "* `Kunde` fehlt bei ein paar Zeilen. Braucht ihr diese Spalte überhaupt für die Fragen des Vertriebsleiters?"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "dbdbc41d",
+   "metadata": {},
+   "source": [
+    "*(Eure Antwort/Diskussion hier eintragen)*\n",
+    "\n",
+    "- Bewertung: ...\n",
+    "- Region: ...\n",
+    "- Einzelpreis: ...\n",
+    "- Kunde: ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "ccd30712",
+   "metadata": {},
+   "source": [
+    "**Aufgabe 4.3:** Setzt eure Strategie um. Erstellt einen bereinigten DataFrame `df_clean`:\n",
+    "\n",
+    "* `Region`: fehlende Werte mit `\"Unbekannt\"` auffüllen\n",
+    "* `Kunde`: fehlende Werte mit `\"Unbekannt\"` auffüllen\n",
+    "* `Einzelpreis`: fehlende Werte mit dem **Median pro Produkt** auffüllen\n",
+    "* `Bewertung`: **nicht** auffüllen — bleibt bewusst `NaN`, wird bei Bedarf mit `dropna()` behandelt\n",
+    "\n",
+    "Kontrolliert anschließend mit `df_clean.isna().sum()`, ob alles wie geplant aussieht."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "132d7671",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 4.3 df_clean erstellen und fehlende Werte behandeln\n",
+    "\n",
+    "\n",
+    "# Kontrolle\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "2729b25c",
+   "metadata": {},
+   "source": [
+    "# 5. Ausreißer / Plausibilität prüfen\n",
+    "\n",
+    "**Aufgabe 5.1:** Lasst euch `df_clean.describe()` für die numerischen Spalten ausgeben. Erstellt zusätzlich einen Boxplot für die Spalte `Menge` (`df_clean.boxplot(column=\"Menge\")`). Was fällt euch auf?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "9e9f0232",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 5.1 describe() und Boxplot für 'Menge'\n",
+    "import matplotlib.pyplot as plt\n",
+    "\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "85e569c6",
+   "metadata": {},
+   "source": [
+    "**Aufgabe 5.2:** Es gibt vermutlich eine Bestellung mit einer auffällig hohen `Menge`. Findet die entsprechende Zeile (Tipp: `df_clean[\"Menge\"].idxmax()`) und schaut euch an, welche:r Kund:in dahintersteckt. Prüft anschließend, ob diese:r Kund:in generell größere Mengen bestellt (z.B. mit `df_clean[df_clean[\"Kunde\"] == \"...\"]`), bevor ihr entscheidet, ob es sich um einen plausiblen Wert oder einen Fehler handelt."
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "1c28cc99",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 5.2 Auffällige Bestellung untersuchen\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "3c69ec9d",
+   "metadata": {},
+   "source": [
+    "# 6. Dokumentation der Bereinigung\n",
+    "\n",
+    "Der Vertriebsleiter kennt sich mit Python nicht aus, will aber nachvollziehen können, was mit den Daten gemacht wurde, bevor er sich auf eure Zahlen verlässt.\n",
+    "\n",
+    "**Aufgabe 6.1:** Dokumentiert stichpunktartig (in der Markdown-Zelle darunter), welche Bereinigungsschritte ihr durchgeführt habt und warum."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "b700d7ff",
+   "metadata": {},
+   "source": [
+    "*(Eure Dokumentation hier eintragen)*\n",
+    "\n",
+    "- ...\n",
+    "- ...\n",
+    "- ..."
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "8e440dc3",
+   "metadata": {},
+   "source": [
+    "# 🎯 Bonus: Beantwortet die Frage des Vertriebsleiters\n",
+    "\n",
+    "Jetzt, wo `df_clean` bereinigt ist, könnt ihr endlich liefern! Nutzt `df_clean`, um folgende Fragen zu beantworten:\n",
+    "\n",
+    "**Aufgabe 7.1:** Berechnet für jede Bestellung den `Umsatz` (`Menge * Einzelpreis`) als neue Spalte.\n",
+    "\n",
+    "**Aufgabe 7.2:** Welche `Region` hat den höchsten Gesamtumsatz? (Gruppiert nach `Region`, summiert `Umsatz`.)\n",
+    "\n",
+    "**Aufgabe 7.3:** Welches `Produkt` wurde am häufigsten bestellt (nach Gesamtmenge)?\n",
+    "\n",
+    "**Aufgabe 7.4:** Wie hoch ist die durchschnittliche Kundenbewertung — **unter den Kund:innen, die überhaupt bewertet haben**?"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "dc86b99a",
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "# 7.1 Umsatz-Spalte berechnen\n",
+    "\n",
+    "\n",
+    "# 7.2 Umsatz nach Region\n",
+    "\n",
+    "\n",
+    "# 7.3 Beliebtestes Produkt nach Menge\n",
+    "\n",
+    "\n",
+    "# 7.4 Durchschnittliche Bewertung (nur vorhandene Bewertungen)\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "369ac804",
+   "metadata": {},
+   "source": [
+    "## Fazit\n",
+    "\n",
+    "Ihr habt es geschafft: aus einem unbereinigten Rohexport wurde eine belastbare Grundlage für das Vertriebsmeeting. Dabei habt ihr geübt:\n",
+    "\n",
+    "* Datentypen erkennen und korrigieren\n",
+    "* Kategorische Werte vereinheitlichen\n",
+    "* Duplikate identifizieren und entfernen\n",
+    "* Fehlende Werte differenziert analysieren und behandeln (statt blind aufzufüllen!)\n",
+    "* Ausreißer kritisch auf Plausibilität prüfen\n",
+    "* Die eigene Bereinigung für Nicht-Techniker:innen dokumentieren\n",
+    "\n",
+    "Genau dieser Ablauf — **verstehen, bevor man handelt** — ist der Kern jeder guten Exploративen Datenanalyse (EDA)."
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "name": "python",
+   "version": "3.11"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}

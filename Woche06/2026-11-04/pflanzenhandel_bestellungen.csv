@@ -1,0 +1,124 @@
+Bestellnr,Datum,Kunde,Produkt,Kategorie,Region,Menge,Einzelpreis,Versandart,Vertriebskanal,Bewertung
+2072,2025-03-14,Elena,Ficus,Zimmerpflanzen,SÜD,7,30.82,EXPRESS,Online-Shop,3.0
+2016,2025-04-28,Mia,Bogenhanf,Zimmerpflanzen,SÜD,4,21.28,Express,Marktplatz,5.0
+2044,2025-05-01,Jan,Tomatenpflanze,Gartenpflanzen,Süd,3,8.36,Standard,Online-Shop,
+2098,2025-03-28,Anna,Pflanzenerde,Zubehör,Süd,4,9.44,EXPRESS,Filiale,3.0
+2107,2025-06-24,Clara,Monstera Deliciosa,Zimmerpflanzen,Süd,6,32.98,Standard,Marktplatz,4.0
+2007,2025-05-23,Leon,Bogenhanf,Zimmerpflanzen,Ost,4,24.56,Standard,Marktplatz,1.0
+2110,2025-02-02,Sara,Gießkanne,Zubehör,,3,26.65,Standard,Filiale,1.0
+2025,2025-05-29,,Pflanzenerde,Zubehör,NORD,7,9.71,EXPRESS,Online-Shop,1.0
+2026,2025-03-25,Elena,Tomatenpflanze,Gartenpflanzen,NORD,6,8.22,Express,Marktplatz,
+2117,2025-04-16,Julia,Basilikum,Kräuter,SÜD,3,5.38,Standard,Marktplatz,3.0
+2077,2025-06-03,Elena,Pflanzentopf,Zubehör,SÜD,8,18.21,standard,Marktplatz,
+2005,2025-06-24,Mia,Ficus,Zimmerpflanzen,Nord,zwei,31.77,standard,Marktplatz,
+2068,2025-02-11,Ben,Tomatenpflanze,Gartenpflanzen,Ost,4,8.39,Standard,Filiale,1.0
+2090,2025-06-26,Lena,Gießkanne,Zubehör,Nord,3,24.69,Express,Online-Shop,1.0
+2011,2025-06-08,Paul,Monstera Deliciosa,Zimmerpflanzen,,3,34.22,Express,Marktplatz,2.0
+2047,2025-06-30,Noah,Bogenhanf,Zimmerpflanzen,West,1,21.49,Express,Filiale,1.0
+2084,2025-01-09,Noah,Basilikum,Kräuter,SÜD,7,,Express,Filiale,3.0
+2091,n/a,Lena,Lavendel,Gartenpflanzen,West,4,12.57,Standard,Online-Shop,
+2009,2025-05-28,Ben,Bogenhanf,Zimmerpflanzen,SÜD,480,21.76,EXPRESS,Online-Shop,5.0
+2115,2025-06-10,Jan,Basilikum,Kräuter,NORD,5,5.35,standard,Marktplatz,5.0
+2050,2025-01-21,David,Pflanzenerde,Zubehör,nord,1,10.32,standard,Online-Shop,2.0
+2118,2025-01-22,Paul,Monstera Deliciosa,Zimmerpflanzen,Süd,5,35.29,EXPRESS,Online-Shop,1.0
+2015,2025-01-13,Julia,Tomatenpflanze,Gartenpflanzen,Süd,8,9.05,standard,Filiale,
+2017,2025-05-28,Mia,Monstera Deliciosa,Zimmerpflanzen,NORD,7,31.78,Express,Filiale,2.0
+2064,2025-02-14,Paul,Monstera Deliciosa,Zimmerpflanzen,Nord,7,,EXPRESS,Online-Shop,
+2035,2025-06-11,Jan,Pflanzenerde,Zubehör,,3,9.77,Express,Online-Shop,5.0
+2096,2025-03-18,Mia,Pflanzentopf,Zubehör,NORD,7,20.57,Express,Filiale,2.0
+2095,2025-03-08,Elena,Lavendel,Gartenpflanzen,NORD,3,12.54,EXPRESS,Online-Shop,1.0
+2010,2025-05-02,Lena,Tomatenpflanze,Gartenpflanzen,Ost,1,9.31,Standard,Filiale,
+2113,2025-02-13,Ben,Basilikum,Kräuter,Süd,5,5.65,Express,Filiale,1.0
+2014,2025-01-20,Hannah,Pflanzentopf,Zubehör,Süd,2,19.06,EXPRESS,Filiale,2.0
+2029,2025-06-04,Elena,Pflanzenerde,Zubehör,Süd,3,10.22,EXPRESS,Marktplatz,3.0
+2008,2025-02-19,Lena,Tomatenpflanze,Gartenpflanzen,Ost,3,8.46,EXPRESS,Online-Shop,3.0
+2004,2025-06-13,Clara,Bogenhanf,Zimmerpflanzen,NORD,2,21.64,standard,Filiale,5.0
+2104,2025-06-30,Ben,Ficus,Zimmerpflanzen,Süd,8,29.49,standard,Filiale,
+2109,2025-02-06,Greta,Gießkanne,Zubehör,Ost,2,24.12,Standard,Online-Shop,4.0
+2102,2025-02-02,Anna,Lavendel,Gartenpflanzen,Süd,3,12.5,EXPRESS,Marktplatz,5.0
+2038,2025-03-08,Finn,Gießkanne,Zubehör,SÜD,5,24.65,standard,Online-Shop,2.0
+2059,2025-04-04,Greta,Basilikum,Kräuter,Nord,7,6.04,Express,Online-Shop,3.0
+2052,2025-02-26,Lena,Pflanzentopf,Zubehör,Ost,5,20.0,EXPRESS,Filiale,1.0
+2116,2025-05-14,Ben,Ficus,Zimmerpflanzen,NORD,4,29.95,EXPRESS,Marktplatz,4.0
+2114,2025-02-10,Finn,Basilikum,Kräuter,Ost,3,6.32,EXPRESS,Online-Shop,3.0
+2082,2025-02-24,David,Monstera Deliciosa,Zimmerpflanzen,NORD,1,34.79,EXPRESS,Marktplatz,5.0
+2108,2025-03-05,,Gießkanne,Zubehör,Nord,1,24.04,Standard,Filiale,1.0
+2031,2025-05-19,Elena,Rosmarin,Kräuter,Ost,8,6.83,Express,Marktplatz,3.0
+2067,2025-03-08,Jan,Bogenhanf,Zimmerpflanzen,NORD,5,21.7,standard,Online-Shop,4.0
+2032,2025-02-18,David,Pflanzenerde,Zubehör,Ost,6,8.92,standard,Online-Shop,4.0
+2055,2025-01-19,Elena,Ficus,Zimmerpflanzen,SÜD,6,30.98,Express,Marktplatz,4.0
+2057,2025-03-03,Hannah,Gießkanne,Zubehör,SÜD,7,,EXPRESS,Online-Shop,3.0
+2099,2025-04-30,Paul,Tomatenpflanze,Gartenpflanzen,Ost,6,8.72,Express,Online-Shop,
+2037,2025-01-04,Ben,Rosmarin,Kräuter,Ost,1,6.98,standard,Marktplatz,4.0
+2076,2025-01-22,Leon,Bogenhanf,Zimmerpflanzen,Süd,6,22.89,Standard,Marktplatz,
+2089,2025-05-17,Greta,Pflanzenerde,Zubehör,NORD,7,9.98,Express,Marktplatz,1.0
+2087,2025-06-07,Lena,Bogenhanf,Zimmerpflanzen,NORD,6,20.4,EXPRESS,Filiale,
+2030,2025-01-17,Elena,Basilikum,Kräuter,SÜD,4,5.51,Express,Marktplatz,
+2078,2025-02-27,Hannah,Gießkanne,Zubehör,SÜD,7,22.56,Express,Filiale,
+2046,2025-03-09,Anna,Pflanzenerde,Zubehör,nord,1,10.45,EXPRESS,Filiale,5.0
+2111,2025-02-28,Julia,Rosmarin,Kräuter,SÜD,6,6.11,Express,Filiale,
+2093,2025-05-13,Anna,Monstera Deliciosa,Zimmerpflanzen,Nord,7,,Standard,Marktplatz,3.0
+2100,31.02.2025,Finn,Gießkanne,Zubehör,Ost,7,24.12,standard,Online-Shop,2.0
+2061,2025-01-04,Mia,Pflanzenerde,Zubehör,nord,1,10.16,EXPRESS,Filiale,2.0
+2019,2025-01-24,Greta,Gießkanne,Zubehör,NORD,2,25.02,Express,Marktplatz,4.0
+2085,2025-05-10,Nina,Tomatenpflanze,Gartenpflanzen,SÜD,5,9.02,Standard,Online-Shop,3.0
+2043,2025-01-26,Julia,Pflanzentopf,Zubehör,Nord,7,20.31,Express,Marktplatz,
+2081,2025-04-26,Anna,Tomatenpflanze,Gartenpflanzen,NORD,7,9.43,Express,Marktplatz,
+2039,2025-04-03,Paul,Lavendel,Gartenpflanzen,Nord,4,12.2,standard,Filiale,2.0
+2071,2025-05-14,Ben,Rosmarin,Kräuter,Nord,8,6.61,Standard,Online-Shop,5.0
+2062,2025-05-30,Jan,Rosmarin,Kräuter,NORD,6,6.63,standard,Marktplatz,1.0
+2112,2025-04-26,Tom,Lavendel,Gartenpflanzen,West,3,11.96,standard,Online-Shop,1.0
+2001,2025-04-17,Lena,Pflanzenerde,Zubehör,Süd,5,10.81,EXPRESS,Online-Shop,1.0
+2075,2025-03-26,,Pflanzenerde,Zubehör,Nord,3,10.82,Standard,Filiale,
+2079,2025-05-29,Lena,Basilikum,Kräuter,NORD,4,5.87,Express,Marktplatz,4.0
+2034,2025-03-24,Jan,Pflanzentopf,Zubehör,Ost,3,20.65,standard,Marktplatz,
+2086,2025-01-04,Elena,Rosmarin,Kräuter,nord,4,6.57,standard,Online-Shop,3.0
+2012,2025-02-24,Nina,Bogenhanf,Zimmerpflanzen,,1,24.04,EXPRESS,Marktplatz,1.0
+2045,2025-01-14,Jan,Pflanzentopf,Zubehör,NORD,n/a,20.41,EXPRESS,Filiale,4.0
+2113,2025-02-13,Ben,Basilikum,Kräuter,Süd,5,5.65,Express,Filiale,1.0
+2054,2025-01-15,Tom,Pflanzentopf,Zubehör,Ost,8,17.36,Standard,Filiale,5.0
+2101,2025-02-19,David,Ficus,Zimmerpflanzen,SÜD,4,32.05,standard,Marktplatz,
+2006,2025-04-01,Noah,Monstera Deliciosa,Zimmerpflanzen,NORD,1,38.11,Standard,Marktplatz,
+2097,2025-03-18,Lena,Lavendel,Gartenpflanzen,Süd,5,14.07,Express,Filiale,4.0
+2051,2025-04-24,,Pflanzenerde,Zubehör,Nord,1,10.25,Standard,Online-Shop,
+2027,2025-02-01,Sara,Pflanzentopf,Zubehör,Ost,5,17.95,Express,Marktplatz,
+2023,2025-01-07,Hannah,Bogenhanf,Zimmerpflanzen,SÜD,8,22.66,Standard,Marktplatz,1.0
+2020,2025-05-10,Julia,Pflanzentopf,Zubehör,West,3,19.04,Standard,Marktplatz,3.0
+2042,2025-06-27,Paul,Rosmarin,Kräuter,Süd,4,6.27,Express,Marktplatz,1.0
+2022,2025-06-20,Julia,Pflanzenerde,Zubehör,nord,1,8.96,EXPRESS,Filiale,2.0
+2033,2025-05-12,Clara,Bogenhanf,Zimmerpflanzen,Ost,7,21.35,Standard,Marktplatz,3.0
+2119,2025-04-28,Leon,Pflanzenerde,Zubehör,NORD,4,10.35,standard,Marktplatz,3.0
+2018,2025-03-22,Greta,Gießkanne,Zubehör,Ost,6,23.27,standard,Marktplatz,4.0
+2092,2025-04-26,Mia,Pflanzenerde,Zubehör,West,3,9.11,standard,Filiale,5.0
+2063,2025-01-07,Elena,Ficus,Zimmerpflanzen,nord,3,29.63,standard,Filiale,1.0
+2028,2025-02-24,Clara,Ficus,Zimmerpflanzen,West,3,31.6,standard,Filiale,
+2048,2025-04-06,Mia,Monstera Deliciosa,Zimmerpflanzen,SÜD,k.A.,34.75,standard,Marktplatz,2.0
+2080,2025-06-18,Jan,Ficus,Zimmerpflanzen,,6,32.68,Standard,Filiale,4.0
+2040,2025-05-09,Julia,Rosmarin,Kräuter,nord,3,7.07,standard,Filiale,1.0
+2106,unbekannt,Anna,Rosmarin,Kräuter,West,5,7.09,standard,Filiale,2.0
+2021,2025-01-03,Mia,Ficus,Zimmerpflanzen,Süd,8,28.93,Standard,Marktplatz,1.0
+2073,2025-03-29,Tom,Ficus,Zimmerpflanzen,SÜD,6,29.83,EXPRESS,Filiale,4.0
+2120,2025-04-03,Nina,Monstera Deliciosa,Zimmerpflanzen,SÜD,6,37.42,Standard,Marktplatz,
+2013,2025-04-18,Lena,Ficus,Zimmerpflanzen,SÜD,2,31.04,EXPRESS,Filiale,
+2065,2025-01-05,Julia,Ficus,Zimmerpflanzen,,8,28.87,standard,Filiale,
+2003,2025-05-22,Greta,Ficus,Zimmerpflanzen,,1,27.75,Express,Marktplatz,5.0
+2088,2025-01-03,Jan,Pflanzenerde,Zubehör,SÜD,6,9.75,EXPRESS,Filiale,
+2103,2025-03-07,Noah,Bogenhanf,Zimmerpflanzen,Ost,6,20.6,Express,Online-Shop,3.0
+2060,2025-03-08,Paul,Monstera Deliciosa,Zimmerpflanzen,,6,37.2,Standard,Filiale,5.0
+2094,2025-02-19,Greta,Gießkanne,Zubehör,West,3,25.81,Standard,Marktplatz,2.0
+2049,2025-06-03,Elena,Monstera Deliciosa,Zimmerpflanzen,SÜD,2,33.84,standard,Online-Shop,
+2066,2025-04-25,,Tomatenpflanze,Gartenpflanzen,Süd,8,8.17,standard,Online-Shop,3.0
+2056,2025-01-28,Julia,Bogenhanf,Zimmerpflanzen,NORD,-,23.85,standard,Marktplatz,
+2075,2025-03-26,,Pflanzenerde,Zubehör,Nord,3,10.82,Standard,Filiale,
+2024,2025-01-15,Nina,Basilikum,Kräuter,Ost,1,5.53,EXPRESS,Marktplatz,3.0
+2080,2025-06-18,Jan,Ficus,Zimmerpflanzen,,6,32.68,Standard,Filiale,4.0
+2053,2025-01-23,Tom,Basilikum,Kräuter,Nord,7,5.31,EXPRESS,Filiale,
+2070,2025-01-03,Ben,Gießkanne,Zubehör,nord,8,27.01,standard,Marktplatz,4.0
+2069,2025-04-01,Leon,Lavendel,Gartenpflanzen,Süd,6,,Express,Filiale,5.0
+2083,2025-06-29,Ben,Rosmarin,Kräuter,Süd,5,6.75,Standard,Marktplatz,
+2105,2025-05-28,Sara,Monstera Deliciosa,Zimmerpflanzen,nord,2,33.79,Express,Filiale,
+2074,2025-02-13,Lena,Lavendel,Gartenpflanzen,West,7,13.96,EXPRESS,Filiale,
+2041,2025-03-02,Hannah,Ficus,Zimmerpflanzen,nord,7,31.5,standard,Marktplatz,4.0
+2058,2025-03-22,Greta,Pflanzentopf,Zubehör,SÜD,4,19.35,standard,Online-Shop,4.0
+2036,2025-04-22,Clara,Rosmarin,Kräuter,Ost,7,6.2,standard,Filiale,2.0
+2002,2025-04-09,Leon,Lavendel,Gartenpflanzen,SÜD,7,12.26,EXPRESS,Filiale,4.0

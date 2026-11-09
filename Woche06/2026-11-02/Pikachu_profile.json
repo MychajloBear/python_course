@@ -1,0 +1,9 @@
+{
+  "name": "Pikachu",
+  "height_m": 0.4,
+  "weight_kg": 6.0,
+  "types": [
+    "electric"
+  ],
+  "image_url": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/25.png"
+}

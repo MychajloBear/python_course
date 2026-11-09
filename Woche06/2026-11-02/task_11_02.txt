@@ -1,0 +1,44 @@
+Gemeinsames Lernen: Digitale Pokédex-Generator (API)
+﻿
+In diesem Projekt baust du ein Werkzeug, das Informationen aus einer riesigen, weltweiten Datenbank abfragt und daraus auf deinem Rechner einen ordentlichen Steckbrief generiert.
+
+Das Besondere hierbei: Du übst intensiv, wie man sich durch komplexe, verschachtelte JSON-Daten (Dictionaries in Dictionaries, Listen in Dictionaries) navigiert.
+
+﻿
+
+Das Ziel
+Dein fertiges Programm fragt nach einem Pokémon, ruft die Daten ab und erstellt automatisch eine Datei (z. B. Pikachu_steckbrief.json).
+
+In der Konsole sieht das so aus:
+
+Willkommen im Pokédex!
+
+Welches Pokémon suchst du? pikachu 
+
+... Suche in der globalen Datenbank ... 
+
+Erfolg! Die Daten für Pikachu wurden gefunden.
+Der Steckbrief wurde als 'Pikachu_steckbrief.json' auf deinem Rechner gespeichert! 
+Text
+
+﻿
+Die generierte .json-Datei auf deiner Festplatte soll dann so aufgeräumt aussehen:
+
+{
+  "name":"Pikachu",
+  "größe_m":0.4,
+  "gewicht_kg":6.0,
+  "typen":["electric"],
+  "bild_url":"https://raw.githubusercontent.com/PokeAPI/..."
+}
+Json
+
+﻿
+﻿
+Schritt-für-Schritt Anleitung
+Die PokeAPI ist fantastisch, da sie komplett kostenlos ist und wir keinen API-Key brauchen!
+
+Nutze input(), um den Nutzer nach dem Namen des Pokémons zu fragen.
+Baue die URL mit einem f-String zusammen und rufe sie auf.
+Wenn der Code 200 (OK) lautet, wandle die Antwort in ein Dictionary um. Jetzt kommt der schwierigste Teil: Du musst die richtigen Daten im riesigen JSON finden! Speichere in Python Variablen den Namen, die Größe, das Gewicht, einen Bild-Link (sprites) und den Typen vom Pokemon ab.
+Erstelle ein neues, aufgeräumtes Python-Dictionary mit den extrahierten Daten und speicher diese in eine lokale Datei, z.B. pikachu_steckbrief.json.
