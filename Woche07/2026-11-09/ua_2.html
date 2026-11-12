@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статистика: Дискретні випадкові величини та розподіли</title>
+<style>
+  :root {
+    --primary: #2962ff;
+    --primary-dark: #1a42b8;
+    --text-main: #1f2937;
+    --text-muted: #4b5563;
+    --bg-slide: #ffffff;
+    --bg-page: #0f172a;
+    --bar-color: #5c93d8;
+    --bar-border: #2c5282;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+  body {
+    background-color: var(--bg-page);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+  #presentation-container {
+    width: 92vw;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9;
+    background: var(--bg-slide);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.45);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .slide {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    padding: 3.5rem 4.5rem;
+    position: relative;
+  }
+  .slide.active { display: flex; }
+  .logo-badge {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #111827;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .logo-badge span {
+    font-size: 0.65rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #4b5563;
+    line-height: 1.1;
+  }
+  h1.slide-title {
+    font-size: 2.3rem;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 1.8rem;
+    border-bottom: 2px solid #e5e7eb;
+    padding-bottom: 0.5rem;
+  }
+  .slide-body {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-main);
+    flex-grow: 1;
+  }
+  ul.content-list {
+    margin-left: 2rem;
+    margin-top: 1rem;
+  }
+  ul.content-list li {
+    margin-bottom: 1.2rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: var(--text-main);
+  }
+  .math-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    padding: 1rem 1.5rem;
+    margin: 1rem 0;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 1.35rem;
+  }
+  .code-block {
+    background: #1e293b;
+    color: #f1f5f9;
+    padding: 1.2rem 1.5rem;
+    border-radius: 8px;
+    font-family: Consolas, Monaco, "Courier New", monospace;
+    font-size: 1.05rem;
+    line-height: 1.5;
+    white-space: pre;
+    overflow-x: auto;
+    margin-top: 1rem;
+  }
+  table.data-table {
+    border-collapse: collapse;
+    margin: 1.2rem 0;
+    font-size: 1.15rem;
+    width: auto;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #cbd5e1;
+    padding: 0.4rem 1.2rem;
+    text-align: center;
+  }
+  table.data-table th { background: #f1f5f9; font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .svg-chart { width: 100%; height: auto; max-height: 270px; }
+
+  /* Navigation Toolbar */
+  #controls {
+    margin-top: 15px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    color: #e2e8f0;
+    font-size: 1rem;
+  }
+  button.nav-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+  button.nav-btn:hover { background: var(--primary-dark); }
+  
+  @media print {
+    body { background: white; overflow: visible; display: block; }
+    #presentation-container { width: 100% !important; max-width: none !important; aspect-ratio: auto; box-shadow: none; border-radius: 0; }
+    .slide { display: flex !important; page-break-after: always; height: 100vh; padding: 2.5rem 3.5rem; }
+    #controls { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div id="presentation-container">
+
+  <!-- Слайд 1: Титульний -->
+  <div class="slide active" style="justify-content: center; align-items: center; text-align: center;">
+    <h1 style="font-size: 4.8rem; color: var(--primary); font-weight: 800; margin-bottom: 1.2rem;">Статистика</h1>
+    <h2 style="font-size: 2.3rem; color: var(--text-main); font-weight: 600;">Дискретні випадкові величини та розподіли</h2>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 2: Зміст -->
+  <div class="slide">
+    <h1 class="slide-title">Зміст</h1>
+    <div class="slide-body">
+      <ol style="margin-left: 2.5rem; font-size: 1.4rem; line-height: 2.2; color: var(--primary-dark);">
+        <li><span style="color: var(--text-main);">Основні поняття</span></li>
+        <li><span style="color: var(--text-main);">Дискретний рівномірний розподіл</span></li>
+        <li><span style="color: var(--text-main);">Геометричний розподіл</span></li>
+        <li><span style="color: var(--text-main);">Показники розподілу</span></li>
+        <li><span style="color: var(--text-main);">Біноміальний розподіл</span></li>
+        <li><span style="color: var(--text-main);">Розподіл Пуассона</span></li>
+      </ol>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 3: Цілі навчання -->
+  <div class="slide">
+    <h1 class="slide-title">Цілі навчання</h1>
+    <div class="slide-body">
+      <ul class="content-list">
+        <li>Описувати дискретні випадкові величини, функції ймовірностей та функції розподілу, а також пояснювати їх значення для моделювання випадкових процесів.</li>
+        <li>Обчислювати й інтерпретувати математичні сподівання, дисперсії та стандартні відхилення дискретних розподілів.</li>
+        <li>Розрізняти дискретні розподіли, вибирати відповідні моделі для практичних завдань та визначати за їх допомогою ймовірності.</li>
+      </ul>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 4: Випадкові величини -->
+  <div class="slide">
+    <h1 class="slide-title">Основні поняття — Випадкові величини</h1>
+    <div class="slide-body">
+      <p><b>Випадкова величина</b> — це функція, яка відображає кожен елемент простору елементарних подій у дійсне число.</p>
+      <div class="math-box" style="text-align: center; font-size: 1.7rem;">
+        <i>X</i> : &Omega; &rarr; &#8477;
+      </div>
+      <p>Число <i>x</i>, якого набуває <i>X</i> при проведенні випадкового випробування, називається <b>реалізацією</b> або <b>значенням</b> <i>X</i>.</p>
+      <br>
+      <p><b>Приклад:</b></p>
+      <p>&Omega; = «Монету підкидають чотири рази». <i>X</i> = «Кількість гербів».</p>
+      <p>Для змінної <i>X</i> можливі значення <b>0, 1, 2, 3 і 4</b>, проте перед кожним новим кидком невідомо напевно, яке саме з цих значень реалізується.</p>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 5: Розподіл ймовірностей -->
+  <div class="slide">
+    <h1 class="slide-title">Основні поняття — Розподіл ймовірностей</h1>
+    <div class="slide-body">
+      <p>Випадкова величина <i>X</i> називається <b>дискретною</b>, якщо вона може набувати лише скінченної або зліченно нескінченної кількості значень <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, ..., <i>x</i><sub><i>k</i></sub>, ...</p>
+      <p><b>Розподіл ймовірностей</b> величини <i>X</i> задається ймовірностями:</p>
+      <div class="math-box" style="text-align: center;">
+        <i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <i>p</i><sub><i>i</i></sub>, &nbsp;&nbsp;&nbsp; <i>i</i> = 1, 2, ..., <i>k</i>, ...
+      </div>
+      <p><b>Функція ймовірностей</b> <i>f</i>(<i>x</i>) дискретної випадкової величини <i>X</i> визначена для <i>x</i> &isin; &#8477; як:</p>
+      <div class="math-box">
+        <i>f</i>(<i>x</i>) = { <i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <i>p</i><sub><i>i</i></sub>, при <i>x</i><sub><i>i</i></sub> &isin; {<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, ..., <i>x</i><sub><i>k</i></sub>, ...}; &nbsp; <b>0</b>, в іншому випадку }
+      </div>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 6: Функція розподілу -->
+  <div class="slide">
+    <h1 class="slide-title">Основні поняття — Функція розподілу</h1>
+    <div class="slide-body">
+      <p><b>Функція розподілу</b> дискретної випадкової величини <i>X</i> — це функція <i>F</i>(<i>x</i>), яка кожному значенню <i>x</i><sub><i>i</i></sub> ставить у відповідність кумулятивну ймовірність:</p>
+      <div class="math-box" style="text-align: center;">
+        <i>F</i>(<i>x</i><sub><i>i</i></sub>) = <i>P</i>(<i>X</i> &le; <i>x</i><sub><i>i</i></sub>) = <i>f</i>(<i>x</i><sub>1</sub>) + ... + <i>f</i>(<i>x</i><sub><i>i</i></sub>)
+      </div>
+      <p><b>Приклад:</b> Монету кидають двічі. <i>X</i> = {«Кількість гербів»}.</p>
+      
+      <div style="display: flex; gap: 3rem; align-items: center; margin-top: 0.8rem;">
+        <table class="data-table">
+          <tr><th><i>X</i></th><td>0</td><td>1</td><td>2</td></tr>
+          <tr><th><i>f</i>(<i>x</i>)</th><td>0,25</td><td>0,5</td><td>0,25</td></tr>
+          <tr><th><i>F</i>(<i>x</i>)</th><td>0,25</td><td>0,75</td><td>1</td></tr>
+        </table>
+        <div style="font-size: 1.15rem; line-height: 1.8;">
+          <i>F</i>(<i>x</i>) = <b>0</b>, якщо <i>x</i> &lt; 0<br>
+          <i>F</i>(<i>x</i>) = <b>0,25</b>, якщо 0 &le; <i>x</i> &lt; 1<br>
+          <i>F</i>(<i>x</i>) = <b>0,75</b>, якщо 1 &le; <i>x</i> &lt; 2<br>
+          <i>F</i>(<i>x</i>) = <b>1</b>, якщо 2 &le; <i>x</i>
+        </div>
+      </div>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 7: Графіки монети -->
+  <div class="slide">
+    <h1 class="slide-title">Функція розподілу — Приклад (Монета)</h1>
+    <div class="slide-body grid-2">
+      <div style="text-align: center;">
+        <h4 style="margin-bottom: 0.5rem; color: #475569;">Функція ймовірностей f(x)</h4>
+        <svg class="svg-chart" viewBox="0 0 320 220">
+          <line x1="40" y1="180" x2="300" y2="180" stroke="#333" stroke-width="1.5"/>
+          <line x1="40" y1="20" x2="40" y2="180" stroke="#333" stroke-width="1.5"/>
+          <rect x="70" y="105" width="40" height="75" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="140" y="30" width="40" height="150" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="210" y="105" width="40" height="75" fill="#5c93d8" stroke="#2c5282"/>
+          <text x="90" y="198" font-size="12" text-anchor="middle">0</text>
+          <text x="160" y="198" font-size="12" text-anchor="middle">1</text>
+          <text x="230" y="198" font-size="12" text-anchor="middle">2</text>
+          <text x="32" y="110" font-size="11" text-anchor="end">0.25</text>
+          <text x="32" y="35" font-size="11" text-anchor="end">0.50</text>
+        </svg>
+      </div>
+      <div style="text-align: center;">
+        <h4 style="margin-bottom: 0.5rem; color: #475569;">Функція розподілу F(x)</h4>
+        <svg class="svg-chart" viewBox="0 0 320 220">
+          <line x1="40" y1="180" x2="300" y2="180" stroke="#333" stroke-width="1.5"/>
+          <line x1="40" y1="20" x2="40" y2="180" stroke="#333" stroke-width="1.5"/>
+          <!-- Сходинки -->
+          <line x1="40" y1="180" x2="80" y2="180" stroke="#0284c7" stroke-width="2.5"/>
+          <line x1="80" y1="140" x2="150" y2="140" stroke="#0284c7" stroke-width="2.5"/>
+          <line x1="150" y1="65" x2="220" y2="65" stroke="#0284c7" stroke-width="2.5"/>
+          <line x1="220" y1="25" x2="295" y2="25" stroke="#0284c7" stroke-width="2.5"/>
+          <circle cx="80" cy="140" r="4" fill="#0284c7"/>
+          <circle cx="150" cy="65" r="4" fill="#0284c7"/>
+          <circle cx="220" cy="25" r="4" fill="#0284c7"/>
+          <text x="80" y="198" font-size="12" text-anchor="middle">0</text>
+          <text x="150" y="198" font-size="12" text-anchor="middle">1</text>
+          <text x="220" y="198" font-size="12" text-anchor="middle">2</text>
+          <text x="32" y="145" font-size="11" text-anchor="end">0.25</text>
+          <text x="32" y="70" font-size="11" text-anchor="end">0.75</text>
+          <text x="32" y="30" font-size="11" text-anchor="end">1.0</text>
+        </svg>
+      </div>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 8: Кубик -->
+  <div class="slide">
+    <h1 class="slide-title">Функція розподілу — Приклад (Гральний кубик)</h1>
+    <div class="slide-body">
+      <p>При одноразовому киданні грального кубика визначимо випадкову величину <i>X</i> = «Кількість очок».</p>
+      <table class="data-table">
+        <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><th><i>P</i>(<i>X</i> = <i>x</i>)</th><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td></tr>
+      </table>
+      <div class="grid-2" style="margin-top: 1rem;">
+        <svg class="svg-chart" viewBox="0 0 320 180">
+          <line x1="30" y1="150" x2="300" y2="150" stroke="#333"/>
+          <line x1="30" y1="20" x2="30" y2="150" stroke="#333"/>
+          <rect x="50" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="90" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="130" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="170" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="210" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="250" y="60" width="30" height="90" fill="#5c93d8" stroke="#2c5282"/>
+          <text x="25" y="65" font-size="10" text-anchor="end">1/6</text>
+        </svg>
+        <svg class="svg-chart" viewBox="0 0 320 180">
+          <line x1="30" y1="150" x2="300" y2="150" stroke="#333"/>
+          <line x1="30" y1="20" x2="30" y2="150" stroke="#333"/>
+          <!-- Сходинки -->
+          <line x1="45" y1="130" x2="85" y2="130" stroke="#0284c7" stroke-width="2"/>
+          <line x1="85" y1="110" x2="125" y2="110" stroke="#0284c7" stroke-width="2"/>
+          <line x1="125" y1="90" x2="165" y2="90" stroke="#0284c7" stroke-width="2"/>
+          <line x1="165" y1="70" x2="205" y2="70" stroke="#0284c7" stroke-width="2"/>
+          <line x1="205" y1="50" x2="245" y2="50" stroke="#0284c7" stroke-width="2"/>
+          <line x1="245" y1="30" x2="285" y2="30" stroke="#0284c7" stroke-width="2"/>
+          <text x="25" y="35" font-size="10" text-anchor="end">1.0</text>
+        </svg>
+      </div>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 9: Сума двох кубиків -->
+  <div class="slide">
+    <h1 class="slide-title">Функція розподілу — Два кубики</h1>
+    <div class="slide-body">
+      <p>При дворазовому киданні кубика: <i>X</i> = «Сума очок».</p>
+      <table class="data-table" style="font-size: 0.95rem;">
+        <tr><th><i>x</i></th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+        <tr><th><i>P</i>(<i>X</i>=<i>x</i>)</th><td>1/36</td><td>2/36</td><td>3/36</td><td>4/36</td><td>5/36</td><td>6/36</td><td>5/36</td><td>4/36</td><td>3/36</td><td>2/36</td><td>1/36</td></tr>
+      </table>
+      <p style="font-size: 1.15rem; color: #4b5563; margin-top: 1rem;">
+        Розподіл ймовірностей утворює симетричний трикутник із піком у точці 7 (ймовірність 6/36 = 1/6), а функція розподілу <i>F</i>(<i>x</i>) має характерну S-подібну східчасту форму.
+      </p>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 10: Схема Бернуллі -->
+  <div class="slide">
+    <h1 class="slide-title">Основні поняття — Експеримент Бернуллі</h1>
+    <div class="slide-body">
+      <p>Часто у випадковому процесі нас цікавить лише одне питання: <b>настала подія <i>A</i> чи ні?</b> Це найпростіший випадок у статистиці — <b>випробування Бернуллі</b>.</p>
+      <br>
+      <p><b>Принцип:</b> ми переводимо результат у числа за допомогою величини-індикатора:</p>
+      <ul style="margin-left: 2rem; margin-top: 0.5rem;">
+        <li><b><i>X</i> = 1</b>, якщо подія <i>A</i> настала («Успіх»)</li>
+        <li><b><i>X</i> = 0</b>, якщо подія <i>A</i> не настала («Невдача»)</li>
+      </ul>
+      <br>
+      <p><b>Розподіл Бернуллі:</b> якщо позначити ймовірність успіху через &pi;:</p>
+      <div class="math-box">
+        <i>P</i>(<i>X</i> = 1) = &pi; <br>
+        <i>P</i>(<i>X</i> = 0) = 1 &minus; &pi;
+      </div>
+    </div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+
+  <!-- Слайд 11: Дискретний рівномірний -->
+  <div class="slide">
+    <h1 class="slide-title">Дискретний рівномірний розподіл</h1>
+    <div class="slide-body">
+      <p>Дискретна випадкова величина <i>X</i> називається <b>рівномірно розподіленою</b>, якщо:</p>
+      <div class="math-box" style="text-align: center; font-size: 1.6rem;">
+        <i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <sup>1

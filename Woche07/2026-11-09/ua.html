@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Статистика: Дискретні випадкові величини та розподіли</title>
+<style>
+  :root {
+    --primary: #2962ff;
+    --text-main: #1e293b;
+    --text-muted: #64748b;
+    --bg-page: #f1f5f9;
+    --card-bg: #ffffff;
+    --border-color: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; }
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 10px;
+  }
+  .top-bar {
+    position: sticky;
+    top: 10px;
+    z-index: 100;
+    background: #0f172a;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .print-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .print-btn:hover { background: #1d4ed8; }
+  
+  /* Контейнер одного слайда */
+  .slide-card {
+    background: var(--card-bg);
+    width: 100%;
+    max-width: 1050px;
+    min-height: 590px;
+    margin-bottom: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    padding: 45px 55px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+  }
+  .slide-header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 25px;
+    border-bottom: 2px solid #f1f5f9;
+    padding-bottom: 12px;
+  }
+  .slide-content {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    flex-grow: 1;
+  }
+  .slide-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #f8fafc;
+  }
+  .slide-number {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .logo-badge {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .logo-badge span {
+    font-size: 0.6rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
+    line-height: 1.1;
+  }
+  .math-box {
+    background: #f8fafc;
+    border-left: 4px solid var(--primary);
+    padding: 12px 18px;
+    margin: 14px 0;
+    font-family: "Cambria Math", "Times New Roman", serif;
+    font-size: 1.25rem;
+  }
+  .code-box {
+    background: #1e293b;
+    color: #f8fafc;
+    padding: 16px 20px;
+    border-radius: 8px;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    white-space: pre-wrap;
+    margin-top: 12px;
+  }
+  table.data-table {
+    border-collapse: collapse;
+    margin: 15px 0;
+    width: auto;
+  }
+  table.data-table th, table.data-table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 14px;
+    text-align: center;
+  }
+  table.data-table th { background: #f8fafc; font-weight: 600; }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 25px; align-items: center; }
+  .grid-4 { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+
+  @media print {
+    body { background: white; padding: 0; }
+    .top-bar { display: none; }
+    .slide-card {
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      page-break-after: always;
+      height: 100vh;
+      max-width: 100%;
+      margin: 0;
+      padding: 30px 40px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span>Усі 28 слайдів доступні для перегляду</span>
+  <button class="print-btn" onclick="window.print()">Зберегти як PDF / Друк</button>
+</div>
+
+<!-- 1 -->
+<div class="slide-card" style="justify-content: center; align-items: center; text-align: center;">
+  <h1 style="font-size: 4rem; color: var(--primary); margin-bottom: 20px;">Статистика</h1>
+  <h2 style="font-size: 2.2rem; color: #1e293b; font-weight: 600;">Дискретні випадкові величини та розподіли</h2>
+  <div class="slide-footer" style="width: 100%; border: none;">
+    <div class="slide-number">1 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 2 -->
+<div class="slide-card">
+  <div class="slide-header">Зміст</div>
+  <div class="slide-content">
+    <ol style="margin-left: 30px; font-size: 1.4rem; line-height: 2.3; color: var(--primary);">
+      <li><span style="color: var(--text-main);">Основні поняття</span></li>
+      <li><span style="color: var(--text-main);">Дискретний рівномірний розподіл</span></li>
+      <li><span style="color: var(--text-main);">Геометричний розподіл</span></li>
+      <li><span style="color: var(--text-main);">Показники розподілу</span></li>
+      <li><span style="color: var(--text-main);">Біноміальний розподіл</span></li>
+      <li><span style="color: var(--text-main);">Розподіл Пуассона</span></li>
+    </ol>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">2 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 3 -->
+<div class="slide-card">
+  <div class="slide-header">Цілі навчання</div>
+  <div class="slide-content">
+    <ul style="margin-left: 25px; line-height: 2; font-size: 1.25rem;">
+      <li style="margin-bottom: 15px;">Описувати дискретні випадкові величини, функції ймовірностей та функції розподілу, а також пояснювати їх значення для моделювання випадкових процесів.</li>
+      <li style="margin-bottom: 15px;">Обчислювати й інтерпретувати математичні сподівання, дисперсії та стандартні відхилення дискретних розподілів.</li>
+      <li style="margin-bottom: 15px;">Розрізняти дискретні розподіли, вибирати відповідні моделі для практичних завдань та визначати за їх допомогою ймовірності.</li>
+    </ul>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">3 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 4 -->
+<div class="slide-card">
+  <div class="slide-header">Основні поняття — Випадкові величини</div>
+  <div class="slide-content">
+    <p><b>Випадкова величина</b> — це функція, яка відображає кожен елемент простору елементарних подій у дійсне число.</p>
+    <div class="math-box" style="text-align: center; font-size: 1.5rem;"><i>X</i> : &Omega; &rarr; &#8477;</div>
+    <p>Число <i>x</i>, якого набуває <i>X</i> при проведенні випадкового випробування, називається <b>реалізацією</b> або <b>значенням <i>X</i></b>.</p>
+    <br>
+    <p><b>Приклад:</b></p>
+    <p>&Omega; = «Монету підкидають чотири рази». <i>X</i> = «Кількість гербів».</p>
+    <p>Для змінної <i>X</i> можливі значення: <b>0, 1, 2, 3 і 4</b>. Проте перед кожним новим кидком невідомо напевно, яке саме з цих значень випаде.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">4 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 5 -->
+<div class="slide-card">
+  <div class="slide-header">Основні поняття — Розподіл ймовірностей</div>
+  <div class="slide-content">
+    <p>Випадкова величина <i>X</i> називається <b>дискретною</b>, якщо вона може набувати лише скінченної або зліченно нескінченної кількості значень <i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, ..., <i>x</i><sub><i>k</i></sub>, ...</p>
+    <p><b>Розподіл ймовірностей</b> величини <i>X</i> задається ймовірностями:</p>
+    <div class="math-box" style="text-align: center;"><i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <i>p</i><sub><i>i</i></sub>, &nbsp;&nbsp; <i>i</i> = 1, 2, ..., <i>k</i>, ...</div>
+    <p><b>Функція ймовірностей</b> <i>f</i>(<i>x</i>) дискретної випадкової величини <i>X</i> визначена для <i>x</i> &isin; &#8477; як:</p>
+    <div class="math-box">
+      <i>f</i>(<i>x</i>) = { <i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <i>p</i><sub><i>i</i></sub>, при <i>x</i><sub><i>i</i></sub> &isin; {<i>x</i><sub>1</sub>, <i>x</i><sub>2</sub>, ..., <i>x</i><sub><i>k</i></sub>, ...}; &nbsp; <b>0</b>, в іншому випадку }
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">5 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 6 -->
+<div class="slide-card">
+  <div class="slide-header">Основні поняття — Функція розподілу</div>
+  <div class="slide-content">
+    <p><b>Функція розподілу</b> дискретної випадкової величини <i>X</i> — це функція <i>F</i>(<i>x</i>), яка кожному значенню <i>x</i><sub><i>i</i></sub> ставить у відповідність сумарну (кумулятивну) ймовірність:</p>
+    <div class="math-box" style="text-align: center;"><i>F</i>(<i>x</i><sub><i>i</i></sub>) = <i>P</i>(<i>X</i> &le; <i>x</i><sub><i>i</i></sub>) = <i>f</i>(<i>x</i><sub>1</sub>) + ... + <i>f</i>(<i>x</i><sub><i>i</i></sub>)</div>
+    <p><b>Приклад:</b> Монету кидають двічі. <i>X</i> = {«Кількість гербів»}.</p>
+    
+    <div style="display: flex; gap: 40px; align-items: center; margin-top: 15px;">
+      <table class="data-table">
+        <tr><th><i>X</i></th><td>0</td><td>1</td><td>2</td></tr>
+        <tr><th><i>f</i>(<i>x</i>)</th><td>0,25</td><td>0,50</td><td>0,25</td></tr>
+        <tr><th><i>F</i>(<i>x</i>)</th><td>0,25</td><td>0,75</td><td>1,00</td></tr>
+      </table>
+      <div style="line-height: 1.8;">
+        <i>F</i>(<i>x</i>) = <b>0</b>, якщо <i>x</i> &lt; 0<br>
+        <i>F</i>(<i>x</i>) = <b>0,25</b>, якщо 0 &le; <i>x</i> &lt; 1<br>
+        <i>F</i>(<i>x</i>) = <b>0,75</b>, якщо 1 &le; <i>x</i> &lt; 2<br>
+        <i>F</i>(<i>x</i>) = <b>1</b>, якщо 2 &le; <i>x</i>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">6 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 7 -->
+<div class="slide-card">
+  <div class="slide-header">Функція розподілу — Приклад (Графіки для монети)</div>
+  <div class="slide-content grid-2">
+    <div style="text-align: center;">
+      <p style="font-weight: 600; margin-bottom: 8px;">Функція ймовірностей f(x)</p>
+      <svg viewBox="0 0 320 200" style="width: 100%; height: 210px;">
+        <line x1="40" y1="170" x2="290" y2="170" stroke="#333" stroke-width="1.5"/>
+        <line x1="40" y1="20" x2="40" y2="170" stroke="#333" stroke-width="1.5"/>
+        <rect x="65" y="95" width="45" height="75" fill="#5c93d8" stroke="#2c5282"/>
+        <rect x="135" y="20" width="45" height="150" fill="#5c93d8" stroke="#2c5282"/>
+        <rect x="205" y="95" width="45" height="75" fill="#5c93d8" stroke="#2c5282"/>
+        <text x="87" y="188" font-size="12" text-anchor="middle">0</text>
+        <text x="157" y="188" font-size="12" text-anchor="middle">1</text>
+        <text x="227" y="188" font-size="12" text-anchor="middle">2</text>
+        <text x="32" y="100" font-size="11" text-anchor="end">0.25</text>
+        <text x="32" y="25" font-size="11" text-anchor="end">0.50</text>
+      </svg>
+    </div>
+    <div style="text-align: center;">
+      <p style="font-weight: 600; margin-bottom: 8px;">Функція розподілу F(x)</p>
+      <svg viewBox="0 0 320 200" style="width: 100%; height: 210px;">
+        <line x1="40" y1="170" x2="290" y2="170" stroke="#333" stroke-width="1.5"/>
+        <line x1="40" y1="20" x2="40" y2="170" stroke="#333" stroke-width="1.5"/>
+        <line x1="40" y1="170" x2="80" y2="170" stroke="#0284c7" stroke-width="2.5"/>
+        <line x1="80" y1="130" x2="150" y2="130" stroke="#0284c7" stroke-width="2.5"/>
+        <line x1="150" y1="55" x2="220" y2="55" stroke="#0284c7" stroke-width="2.5"/>
+        <line x1="220" y1="20" x2="285" y2="20" stroke="#0284c7" stroke-width="2.5"/>
+        <circle cx="80" cy="130" r="4" fill="#0284c7"/>
+        <circle cx="150" cy="55" r="4" fill="#0284c7"/>
+        <circle cx="220" cy="20" r="4" fill="#0284c7"/>
+        <text x="80" y="188" font-size="12" text-anchor="middle">0</text>
+        <text x="150" y="188" font-size="12" text-anchor="middle">1</text>
+        <text x="220" y="188" font-size="12" text-anchor="middle">2</text>
+        <text x="32" y="135" font-size="11" text-anchor="end">0.25</text>
+        <text x="32" y="60" font-size="11" text-anchor="end">0.75</text>
+        <text x="32" y="25" font-size="11" text-anchor="end">1.0</text>
+      </svg>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">7 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 8 -->
+<div class="slide-card">
+  <div class="slide-header">Функція розподілу — Гральний кубик (1 кидок)</div>
+  <div class="slide-content">
+    <p>Випадкова величина <i>X</i> = «Кількість очок» при одноразовому киданні кубика:</p>
+    <table class="data-table">
+      <tr><th><i>x</i></th><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+      <tr><th><i>P</i>(<i>X</i> = <i>x</i>)</th><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td><td>1/6</td></tr>
+    </table>
+    <div class="grid-2" style="margin-top: 10px;">
+      <div style="text-align: center;">
+        <small>Функція ймовірностей f(x)</small>
+        <svg viewBox="0 0 300 160" style="width: 100%; height: 160px;">
+          <line x1="30" y1="135" x2="280" y2="135" stroke="#333"/>
+          <line x1="30" y1="20" x2="30" y2="135" stroke="#333"/>
+          <rect x="45" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="80" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="115" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="150" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="185" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <rect x="220" y="55" width="25" height="80" fill="#5c93d8" stroke="#2c5282"/>
+          <text x="24" y="60" font-size="10" text-anchor="end">1/6</text>
+        </svg>
+      </div>
+      <div style="text-align: center;">
+        <small>Функція розподілу F(x)</small>
+        <svg viewBox="0 0 300 160" style="width: 100%; height: 160px;">
+          <line x1="30" y1="135" x2="280" y2="135" stroke="#333"/>
+          <line x1="30" y1="20" x2="30" y2="135" stroke="#333"/>
+          <line x1="40" y1="115" x2="75" y2="115" stroke="#0284c7" stroke-width="2"/>
+          <line x1="75" y1="95" x2="110" y2="95" stroke="#0284c7" stroke-width="2"/>
+          <line x1="110" y1="75" x2="145" y2="75" stroke="#0284c7" stroke-width="2"/>
+          <line x1="145" y1="55" x2="180" y2="55" stroke="#0284c7" stroke-width="2"/>
+          <line x1="180" y1="35" x2="215" y2="35" stroke="#0284c7" stroke-width="2"/>
+          <line x1="215" y1="20" x2="260" y2="20" stroke="#0284c7" stroke-width="2"/>
+          <text x="24" y="25" font-size="10" text-anchor="end">1.0</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">8 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 9 -->
+<div class="slide-card">
+  <div class="slide-header">Функція розподілу — Сума двох кубиків</div>
+  <div class="slide-content">
+    <p>Випадкова величина <i>X</i> = «Сума очок» при дворазовому киданні кубика:</p>
+    <table class="data-table" style="font-size: 0.95rem;">
+      <tr><th><i>x</i></th><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+      <tr><th><i>P</i></th><td>1/36</td><td>2/36</td><td>3/36</td><td>4/36</td><td>5/36</td><td>6/36</td><td>5/36</td><td>4/36</td><td>3/36</td><td>2/36</td><td>1/36</td></tr>
+    </table>
+    <p style="margin-top: 15px; color: var(--text-muted);">
+      Розподіл ймовірностей формує характерну симетричну «піраміду» з вершиною в точці 7 (найвища ймовірність 6/36 = 1/6), а функція розподілу <i>F</i>(<i>x</i>) плавно зростає за S-подібною траєкторією від 1/36 до 1.
+    </p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">9 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 10 -->
+<div class="slide-card">
+  <div class="slide-header">Основні поняття — Експеримент Бернуллі</div>
+  <div class="slide-content">
+    <p>Часто нас цікавить лише одне питання: <b>настала подія <i>A</i> чи ні?</b> Це найпростіший випадок у статистиці, відомий як <b>випробування (експеримент) Бернуллі</b>.</p>
+    <br>
+    <p><b>Принцип:</b> ми трансформуємо результат у числа за допомогою індикаторної величини <i>X</i>:</p>
+    <ul style="margin-left: 25px; line-height: 1.8;">
+      <li><b><i>X</i> = 1</b>, якщо подія <i>A</i> настала («Успіх»)</li>
+      <li><b><i>X</i> = 0</b>, якщо подія <i>A</i> не настала («Невдача»)</li>
+    </ul>
+    <br>
+    <p><b>Приклади:</b></p>
+    <p>• Кидок кубика: чи випало парне число? (Так = 1, Ні = 0)</p>
+    <p>• Медицина: чи допомогли ліки пацієнту? (Одужання = 1, Ні = 0)</p>
+    <div class="math-box">
+      <i>P</i>(<i>X</i> = 1) = &pi; <br>
+      <i>P</i>(<i>X</i> = 0) = 1 &minus; &pi;
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">10 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 11 -->
+<div class="slide-card">
+  <div class="slide-header">Дискретний рівномірний розподіл</div>
+  <div class="slide-content">
+    <p>Дискретна випадкова величина <i>X</i> називається <b>рівномірно розподіленою</b>, якщо всі її значення рівноймовірні:</p>
+    <div class="math-box" style="text-align: center; font-size: 1.6rem;"><i>P</i>(<i>X</i> = <i>x</i><sub><i>i</i></sub>) = <sup>1</sup>&frasl;<sub><i>k</i></sub></div>
+    <p>Випадкова величина <i>X</i> = «Кількість очок» при киданні грального кубика є класичним прикладом: кожне з 6 значень має однакову ймовірність 1/6.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">11 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 12 -->
+<div class="slide-card">
+  <div class="slide-header">Геометричний розподіл</div>
+  <div class="slide-content">
+    <p>Випробування Бернуллі з ймовірністю &pi; = <i>P</i>(<i>A</i>) повторюється доти, доки подія <i>A</i> не настане вперше.</p>
+    <p><i>X</i> = «Кількість спроб до першої появи події <i>A</i>».</p>
+    <p>Геометричний розподіл — це по своїй суті розподіл <b>«Скільки ще потрібно чекати?»</b>.</p>
+    <br>
+    <p>Дискретна випадкова величина <i>X</i> називається геометрично розподіленою з параметром &pi;. Позначення: <b><i>X</i> ~ <i>G</i>(&pi;)</b>.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">12 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 13 -->
+<div class="slide-card">
+  <div class="slide-header">Геометричний розподіл — Приклад</div>
+  <div class="slide-content">
+    <p>Штрафні кидки в баскетболі. Відсоток влучань становить 20%, отже <i>p</i> = 0,2. Ви кидаєте до першого влучання, після чого зупиняєтесь.</p>
+    <br>
+    <ul style="margin-left: 20px; line-height: 1.8;">
+      <li><i>p</i> = 0,20: ймовірність влучання (успіх).</li>
+      <li>1 &minus; <i>p</i> = 0,80: ймовірність промаху (невдача).</li>
+      <li><i>k</i> = 4: шукаємо ймовірність, що саме 4-й кидок стане першим влучним.</li>
+    </ul>
+    <div class="math-box">
+      <i>P</i>(<i>X</i> = <i>k</i>) = (1 &minus; <i>p</i>)<sup><i>k</i>&minus;1</sup> &sdot; <i>p</i> <br>
+      <i>P</i>(<i>X</i> = 4) = 0,80<sup>3</sup> &sdot; 0,20 = 0,512 &sdot; 0,20 = <b>0,1024</b> (близько 10,2%)
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">13 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 14 -->
+<div class="slide-card">
+  <div class="slide-header">Геометричний розподіл — Python</div>
+  <div class="slide-content">
+    <p>Приклад обчислення в Python за допомогою <code>scipy.stats</code>:</p>
+    <div class="code-box">from scipy.stats import geom
+
+p = 0.20
+k = 4
+
+# Ймовірність для першого успіху на k-й спробі (PMF)
+prob = geom.pmf(k, p)  # Probability mass function
+
+print(f"Ймовірність того, що {k}-й кидок стане першим влучанням: {prob:.4f}")
+# Виведе: 0.1024</div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">14 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 15 -->
+<div class="slide-card">
+  <div class="slide-header">Статистичні показники — Математичне сподівання</div>
+  <div class="slide-content">
+    <p><b>Математичне сподівання</b> <i>E</i>(<i>X</i>) дискретної випадкової величини:</p>
+    <div class="math-box" style="text-align: center;">
+      <i>E</i>(<i>X</i>) = <i>x</i><sub>1</sub>&sdot;<i>p</i><sub>1</sub> + ... + <i>x</i><sub><i>k</i></sub>&sdot;<i>p</i><sub><i>k</i></sub> = &sum; <i>x</i><sub><i>i</i></sub>&sdot;<i>p</i><sub><i>i</i></sub>
+    </div>
+    <p>Позначення: &mu;<sub><i>X</i></sub>, &mu;.</p>
+    <br>
+    <p><b>Приклад для грального кубика:</b></p>
+    <p><i>E</i>(<i>X</i>) = 1&sdot;(1/6) + 2&sdot;(1/6) + 3&sdot;(1/6) + 4&sdot;(1/6) + 5&sdot;(1/6) + 6&sdot;(1/6) = <b>3,5</b>.</p>
+    <p style="margin-top: 8px; color: var(--text-muted);">
+      3,5 — це теоретичне середнє значення при нескінченно великій кількості кидків, хоча число 3,5 на жодній грані кубика не випадає.
+    </p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">15 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 16 -->
+<div class="slide-card">
+  <div class="slide-header">Математичне сподівання vs. Середнє арифметичне</div>
+  <div class="slide-content">
+    <p>Математичне сподівання є зваженим середнім теоретичних значень із вагами-ймовірностями <i>p</i><sub><i>k</i></sub>.</p>
+    <br>
+    <ul style="margin-left: 20px; line-height: 2;">
+      <li><b>Середнє арифметичне</b> описує центр <b>реальних емпіричних даних</b>, які ви вже зібрали.</li>
+      <li><b>Математичне сподівання</b> описує центр <b>теоретичного розподілу</b>.</li>
+    </ul>
+    <br>
+    <p>Його можна визначити аналітично без збору даних і проведення експерименту — центр моделі відомий завчасно.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">16 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 17 -->
+<div class="slide-card">
+  <div class="slide-header">Математичне сподівання — Формули</div>
+  <div class="slide-content">
+    <p><b>• Рівномірний розподіл:</b></p>
+    <div class="math-box" style="font-size: 1.4rem;">
+      <i>E</i>(<i>X</i>) = <sup>(Початкове значення + Кінцеве значення)</sup> &frasl; <sub>2</sub>
+    </div>
+    <br>
+    <p><b>• Геометричний розподіл:</b></p>
+    <div class="math-box" style="font-size: 1.4rem;">
+      <i>E</i>(<i>X</i>) = <sup>1</sup>&frasl;<sub>&pi;</sub>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">17 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 18 -->
+<div class="slide-card">
+  <div class="slide-header">Дисперсія та стандартне відхилення</div>
+  <div class="slide-content">
+    <p><b>Дисперсія</b> дискретної випадкової величини:</p>
+    <div class="math-box">Var(<i>X</i>) = <i>E</i>((<i>X</i> &minus; &mu;)<sup>2</sup>)</div>
+    <p>Вона показує, наскільки далеко значення в середньому відхиляються від математичного сподівання («середній квадрат відхилення»).</p>
+    <br>
+    <p><b>Стандартне відхилення:</b></p>
+    <div class="math-box">&sigma; = &radic;<span style="text-decoration: overline;">Var(<i>X</i>)</span></div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">18 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 19 -->
+<div class="slide-card">
+  <div class="slide-header">Дисперсія — Формула зміщення та приклад</div>
+  <div class="slide-content">
+    <p><b>Правило спрощення обчислень (формула зміщення):</b></p>
+    <div class="math-box">Var(<i>X</i>) = <i>E</i>(<i>X</i><sup>2</sup>) &minus; (<i>E</i>(<i>X</i>))<sup>2</sup> = <i>E</i>(<i>X</i><sup>2</sup>) &minus; &mu;<sup>2</sup></div>
+    <p><b>Приклад для грального кубика:</b></p>
+    <div class="math-box">
+      Var(<i>X</i>) = <sup>1</sup>&frasl;<sub>6</sub>(1<sup>2</sup> + 2<sup>2</sup> + 3<sup>2</sup> + 4<sup>2</sup> + 5<sup>2</sup> + 6<sup>2</sup>) &minus; 3,5<sup>2</sup> &approx; <b>2,92</b> <br>
+      &sigma; = &radic;2,92 &approx; <b>1,71</b>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">19 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 20 -->
+<div class="slide-card">
+  <div class="slide-header">Показники розподілу — Асиметрія (Skewness)</div>
+  <div class="slide-content">
+    <p style="text-align: center; margin-bottom: 25px; font-weight: 600;">Співвідношення Середнього, Медіани та Моди:</p>
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; text-align: center;">
+      <div style="background: #f8fafc; padding: 18px; border-radius: 8px;">
+        <h4 style="color: #0284c7; margin-bottom: 8px;">Лівостороння асиметрія</h4>
+        <p>Середнє &lt; Медіана &lt; Мода</p>
+        <small style="color: var(--text-muted);">(довгий хвіст ліворуч)</small>
+      </div>
+      <div style="background: #f8fafc; padding: 18px; border-radius: 8px;">
+        <h4 style="color: #0284c7; margin-bottom: 8px;">Симетричний</h4>
+        <p>Середнє = Медіана = Мода</p>
+        <small style="color: var(--text-muted);">(дзвоноподібний вигляд)</small>
+      </div>
+      <div style="background: #f8fafc; padding: 18px; border-radius: 8px;">
+        <h4 style="color: #0284c7; margin-bottom: 8px;">Правостороння асиметрія</h4>
+        <p>Мода &lt; Медіана &lt; Середнє</p>
+        <small style="color: var(--text-muted);">(довгий хвіст праворуч)</small>
+      </div>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">20 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 21 -->
+<div class="slide-card">
+  <div class="slide-header">Біноміальний розподіл</div>
+  <div class="slide-content">
+    <p>Розглядається серія з <i>n</i> незалежних повторень експерименту Бернуллі зі сталою ймовірністю успіху &pi; = <i>P</i>(<i>A</i>).</p>
+    <p><i>X</i> = «Кількість випробувань, у яких подія <i>A</i> настане».</p>
+    <br>
+    <p><b>Приклад:</b> кидаємо кубик 10 разів і рахуємо кількість випадань «шістки».</p>
+    <br>
+    <p>Цей розподіл називається <b>біноміальним</b>, або <b><i>B</i>(<i>n</i>, &pi;)</b>. Він показує ймовірність сумарної кількості успіхів у <i>n</i> однакових випробуваннях.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">21 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 22 -->
+<div class="slide-card">
+  <div class="slide-header">Біноміальний розподіл (n = 20)</div>
+  <div class="slide-content grid-4">
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&pi; = 0.1</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Правостороння асиметрія, пік біля k = 2</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&pi; = 0.25</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Помірна асиметрія, пік біля k = 5</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&pi; = 0.5</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Ідеально симетричний розподіл, пік k = 10</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&pi; = 0.9</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Лівостороння асиметрія, пік біля k = 18</p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">22 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 23 -->
+<div class="slide-card">
+  <div class="slide-header">Біноміальний розподіл — Python</div>
+  <div class="slide-content">
+    <p>Виробництво: 95% деталей якісні, 5% дефектні (<i>p</i> = 0,05). Купуємо <i>n</i> = 10 деталей.</p>
+    <div class="code-box">from scipy.stats import binom
+
+n = 10
+p = 0.05
+k = 2
+
+# Ймовірність знайти рівно k бракованих деталей (PMF)
+prob_exact = binom.pmf(k, n, p)
+print(f"Ймовірність для точно {k} бракованих деталей: {prob_exact:.4f}")
+
+# Кумулятивна ймовірність: "Щонайбільше k деталей" - P(X <= 2) = P(0) + P(1) + P(2)
+prob_upto = binom.cdf(k, n, p) # Cumulative distribution function
+print(f"Ймовірність для щонайбільше {k} бракованих деталей: {prob_upto:.4f}")</div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">23 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 24 -->
+<div class="slide-card">
+  <div class="slide-header">Розподіл Пуассона</div>
+  <div class="slide-content">
+    <p>Геометричний розподіл рахує кількість спроб до першого успіху (множина значень &naturals; не обмежена зверху, на відміну від біноміального, що обмежений <i>n</i>).</p>
+    <br>
+    <p><b>Розподіл Пуассона</b> також моделює процеси підрахунку. Він рахує кількість подій, які відбуваються протягом <b>фіксованого інтервалу часу або заданої області простору</b>. Кількість подій <b>не обмежена зверху</b>.</p>
+    <br>
+    <p><b>Приклади:</b></p>
+    <p>• Кількість страхових випадків за один рік.</p>
+    <p>• Кількість хворих на грип протягом місяця.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">24 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 25 -->
+<div class="slide-card">
+  <div class="slide-header">Розподіл Пуассона — Параметри</div>
+  <div class="slide-content">
+    <p>Випадкова величина називається пуассонівською з параметром &lambda; &gt; 0: <b><i>X</i> ~ Po(&lambda;)</b>.</p>
+    <p>При більших &lambda; (&lambda; &ge; 10) розподіл стає практично симетричним.</p>
+    <div class="math-box">
+      <i>E</i>(<i>X</i>) = &lambda; <br>
+      Var(<i>X</i>) = &lambda;
+    </div>
+    <p><b>Лямбда (&lambda;)</b> — це середня частота (інтенсивність) настання події за період.</p>
+    <p>Якщо на підприємстві ламається в середньому 2 верстати на місяць, то &lambda; = 2.</p>
+    <p style="margin-top: 8px; color: var(--text-muted);">На відміну від біноміального розподілу, тут не потрібні ні фіксоване <i>n</i>, ні <i>p</i>. Потрібно знати лише середній показник появи події.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">25 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 26 -->
+<div class="slide-card">
+  <div class="slide-header">Розподіл Пуассона при різних &lambda;</div>
+  <div class="slide-content grid-4">
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&lambda; = 0.5</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Швидко спадаючий, пік у k = 0</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&lambda; = 1</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Максимуми при k = 0 та k = 1</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&lambda; = 5</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Асиметричний горб біля k = 4–5</p>
+    </div>
+    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; text-align: center;">
+      <p style="font-weight: 700;">&lambda; = 10</p>
+      <p style="font-size: 0.95rem; color: var(--text-muted); margin-top: 5px;">Плавний майже симетричний купол</p>
+    </div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">26 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 27 -->
+<div class="slide-card">
+  <div class="slide-header">Розподіл Пуассона — Python</div>
+  <div class="slide-content">
+    <p>На автобусну зупинку кожні 10 хвилин приходить у середньому 3 особи (&lambda; = 3). Ймовірність появи 5 або щонайбільше 5 осіб:</p>
+    <div class="code-box">from scipy.stats import poisson
+
+lam = 3  # Параметр Lambda (середнє значення за інтервал)
+k = 5    # Шукана кількість подій
+
+prob_exact = poisson.pmf(k, lam)
+# Кумулятивна ймовірність (CDF): "Щонайбільше 5 осіб" P(X <= 5)
+prob_upto = poisson.cdf(k, lam)
+
+print(f"Ймовірність щонайбільше {k} осіб: {prob_upto:.4f}")</div>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">27 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+<!-- 28 -->
+<div class="slide-card">
+  <div class="slide-header">Розподіл Пуассона — Інтуїція моделі</div>
+  <div class="slide-content">
+    <p>Розподіл Пуассона застосовується завжди, коли події з'являються <b>незалежно одна від одної у фіксованій області (у часі або просторі)</b>.</p>
+    <br>
+    <p><b>Наочний приклад: сніжинки на тротуарній плитці.</b></p>
+    <p>Коли сніг іде рівномірно, на кожну плитку потрапляє в середньому, наприклад, 50 сніжинок. Але на одну плитку впаде 42, на іншу — 58. Це чиста випадковість, яка підпорядковується саме закону Пуассона.</p>
+  </div>
+  <div class="slide-footer">
+    <div class="slide-number">28 / 28</div>
+    <div class="logo-badge">DSI <span>Data<br>Science<br>Institute</span></div>
+  </div>
+</div>
+
+</body>
+</html>
